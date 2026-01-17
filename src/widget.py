@@ -78,8 +78,3 @@ class App(QWidget):
     def on_click(self, button_num):
         print(f"Button {button_num + 1} clicked!")
 
-if __name__ == '__main__':
-    import sys
-    app = QApplication(sys.argv)
-    ex = App()
-    sys.exit(app.exec_())

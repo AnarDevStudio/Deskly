@@ -22,24 +22,18 @@ def create_conky_file():
             f.write(
 """
 conky.config = {
-    alignment = 'top_right',
-    background = true,
-    double_buffer = true,
-    update_interval = 1.0,
-    own_window = true,
-    own_window_type = 'normal',
-    own_window_transparent = true,
-    minimum_width = 300,
-    maximum_width = 300,
-    gap_x = 20,
-    gap_y = 40,
-}
+  own_window = true,
+  own_window_type = 'dock',
+  own_window_transparent = true,
+  double_buffer = true,
+  update_interval = 1,
+};
 
 conky.text = [[
-${time %H:%M:%S}
 CPU: ${cpu}%
 RAM: ${memperc}%
-]]
+]];
+
 """
             )
         print(f"'{conky_path}' dosyası oluşturuldu ve içerik yazıldı.")
@@ -57,6 +51,4 @@ def run_conky(conky_file):
     subprocess.Popen(["conky", "-c", conky_file])
     print("Conky çalışıyor!")
 
-if __name__ == "__main__":
-    conky_file = create_conky_file()
-    run_conky(conky_file)
+
