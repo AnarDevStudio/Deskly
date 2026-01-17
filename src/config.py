@@ -1,5 +1,7 @@
 import os
 import subprocess
+import json
+import time
 
 def create_deskly_folder():
     home_dir = os.environ.get("HOME") or os.environ.get("USERPROFILE")
@@ -7,9 +9,8 @@ def create_deskly_folder():
 
     if not os.path.exists(deskly_dir):
         os.mkdir(deskly_dir)
-        print(f"'{deskly_dir}' klasörü oluşturuldu.")
     else:
-        print(f"'{deskly_dir}' klasörü zaten var.")
+        return deskly_dir
 
     return deskly_dir
 
@@ -17,38 +18,34 @@ def create_conky_file():
     deskly_dir = create_deskly_folder()
     conky_path = os.path.join(deskly_dir, ".conkyrc")
 
-    if not os.path.exists(conky_path):
-        with open(conky_path, "w") as f:
-            f.write(
-"""
-conky.config = {
-  own_window = true,
-  own_window_type = 'dock',
-  own_window_transparent = true,
-  double_buffer = true,
-  update_interval = 1,
-};
+    json_path = os.path.join(os.path.dirname(__file__), "styles", "styles.json")
 
-conky.text = [[
-CPU: ${cpu}%
-RAM: ${memperc}%
-]];
+    if not os.path.exists(json_path):
+        return None
 
-"""
-            )
-        print(f"'{conky_path}' dosyası oluşturuldu ve içerik yazıldı.")
-    else:
-        print(f"'{conky_path}' dosyası zaten mevcut.")
+    with open(json_path, "r") as styles_file:
+        styles = json.load(styles_file)
+
+    with open(conky_path, "w") as f:
+        f.write(styles[0]["style"])
+        print(f"'.conkyrc' file fuck stiles is writing:\n{styles[0]['style']}")
+
     return conky_path
 
 def install_dependencies():
-    subprocess.run(["sudo", "apt", "update"])
-    subprocess.run(["sudo", "apt", "install", "-y", "conky-all"])
+    subprocess.run(["sudo", "apt", "update"], check=True)
+    subprocess.run(["sudo", "apt", "install", "-y", "conky-all"], check=True)
 
 def run_conky(conky_file):
-    # Conky'yi başlat
-    print("Conky başlatılıyor...")
-    subprocess.Popen(["conky", "-c", conky_file])
-    print("Conky çalışıyor!")
+    if conky_file is None:
+        return
 
+    subprocess.run(["pkill", "conky"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
+    time.sleep(0.5)
+
+    # Yeni Conky başlat
+    subprocess.Popen(["conky", "-c", conky_file],
+                     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    print("Conky started")

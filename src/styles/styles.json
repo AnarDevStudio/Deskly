@@ -1,0 +1,10 @@
+[ 
+    {
+        "name": "normal_style",
+        "style": "conky.config = {\n    own_window = true,\n    own_window_type = 'dock',\n    own_window_transparent = true,\n    double_buffer = true,\n    update_interval = 1\n};\n\nconky.text = [[\nCPU: ${cpu}%\nRAM: ${memperc}%\n]];"
+    },
+    {
+        "name": "miku_style",
+        "style": "conky.config = {\n    own_window = true,\n    own_window_type = 'dock',\n    own_window_transparent = true,\n    double_buffer = true,\n    update_interval = 1\n};\n\nconky.text = [[\nCPU: ${cpu}%\nRAM: ${memperc}%\n]];"
+    }
+]  

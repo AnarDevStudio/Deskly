@@ -1,20 +1,25 @@
 import subprocess
-import widget
-import config
+import sys
 from PyQt5.QtWidgets import QApplication
+import config
+import widget
 
 if __name__ == "__main__":
-    is_installed = subprocess.call(["dpkg -l | grep conky"], shell=True)
-    config.run_conky(config.create_conky_file())
-    print(is_installed)
+    is_installed = subprocess.call(
+        "dpkg -l | grep -q conky",
+        shell=True
+    )
+
     if is_installed != 0:
-        print("Conky yüklü değil, yükleniyor...")
+        print("Conky is installing...")
         subprocess.run(["sudo", "apt", "update"])
         subprocess.run(["sudo", "apt", "install", "-y", "conky-all"])
-        print("Conky yüklendi.")
     else:
-        print("Conky zaten yüklü.")    
-    import sys
+        print("Conky is already installed.")
+    config.create_deskly_folder()
+    conky_file = config.create_conky_file()
+    config.run_conky(conky_file)
+
     app = QApplication(sys.argv)
     ex = widget.App()
     sys.exit(app.exec_())
