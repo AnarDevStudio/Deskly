@@ -49,13 +49,15 @@ class App(QWidget):
         for row in range(5):
             for col in range(3):
                 logo = QPixmap("./styles/images.jpeg")
-                font = QFont("Arial", 20)
+                font = QFont("Arial", 15)
                 font.setBold(True)
                 button_div = QWidget()
-                button_div.setFixedSize(250, 210)
+                button_div.setFixedSize(270, 210)
                 button_div.setStyleSheet("background-color: #3E3E3E; border-radius: 10px;")
                 style_name = QLabel("Normal Style", button_div)
-                style_name.move(100, 50)
+                style_name.move(50, 0)
+                style_name.resize(140, 30)
+                style_name.setAlignment(Qt.AlignCenter)
                 style_name.raise_()
                 style_name.setFont(font)
                 image_label = QLabel(button_div)
