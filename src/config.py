@@ -14,7 +14,7 @@ def create_deskly_folder():
 
     return deskly_dir
 
-def create_conky_file():
+def create_conky_file(id):
     deskly_dir = create_deskly_folder()
     conky_path = os.path.join(deskly_dir, ".conkyrc")
 
@@ -28,7 +28,7 @@ def create_conky_file():
 
     with open(conky_path, "w") as f:
         f.write(styles[0]["style"])
-        print(f"'.conkyrc' file fuck stiles is writing:\n{styles[0]['style']}")
+        print(f"'.conkyrc' file fuck stiles is writing:\n{styles[id]['style']}")
 
     return conky_path
 

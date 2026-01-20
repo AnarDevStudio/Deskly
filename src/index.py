@@ -16,9 +16,8 @@ if __name__ == "__main__":
         subprocess.run(["sudo", "apt", "install", "-y", "conky-all"])
     else:
         print("Conky is already installed.")
+        
     config.create_deskly_folder()
-    conky_file = config.create_conky_file()
-    config.run_conky(conky_file)
 
     app = QApplication(sys.argv)
     ex = widget.App()

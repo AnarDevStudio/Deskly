@@ -1,6 +1,9 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QLabel, QSlider, QPushButton, QScrollArea
 from PyQt5.QtCore import Qt
+import config
+import os
+import json
 
 class App(QWidget):
     def __init__(self):
@@ -76,7 +79,8 @@ class App(QWidget):
         self.show()
 
     def on_click(self, button_num):
-        print(f"Button {button_num + 1} clicked!")
+        conky_file = config.create_conky_file(button_num)
+        config.run_conky(conky_file)
 
 if __name__ == '__main__':
     import sys
