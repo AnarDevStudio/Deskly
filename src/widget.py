@@ -1,9 +1,9 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QLabel, QSlider, QPushButton, QScrollArea
+from PyQt5.QtGui import QPixmap, QFont
 from PyQt5.QtCore import Qt
 import config
-import os
-import json
+
 
 class App(QWidget):
     def __init__(self):
@@ -48,9 +48,21 @@ class App(QWidget):
         element_count = 0
         for row in range(5):
             for col in range(3):
+                logo = QPixmap("./styles/images.jpeg")
+                font = QFont("Arial", 20)
+                font.setBold(True)
                 button_div = QWidget()
                 button_div.setFixedSize(250, 210)
                 button_div.setStyleSheet("background-color: #3E3E3E; border-radius: 10px;")
+                style_name = QLabel("Normal Style", button_div)
+                style_name.move(100, 50)
+                style_name.raise_()
+                style_name.setFont(font)
+                image_label = QLabel(button_div)
+                image_label.lower()
+                image_label.resize(250, 210)
+                image_label.setAlignment(Qt.AlignCenter)
+                image_label.setPixmap(logo)
                 button_layout = QVBoxLayout(button_div)
                 button = QPushButton(f"Element {element_count + 1}")
                 button.setStyleSheet("""
