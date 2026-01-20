@@ -46,10 +46,10 @@ class App(QWidget):
         main_layout.setContentsMargins(10, 10, 10, 10)
 
         element_count = 0
-        for row in range(10):
-            for col in range(4):
+        for row in range(5):
+            for col in range(3):
                 button_div = QWidget()
-                button_div.setFixedSize(210, 150)
+                button_div.setFixedSize(250, 210)
                 button_div.setStyleSheet("background-color: #3E3E3E; border-radius: 10px;")
                 button_layout = QVBoxLayout(button_div)
                 button = QPushButton(f"Element {element_count + 1}")
@@ -82,8 +82,3 @@ class App(QWidget):
         conky_file = config.create_conky_file(button_num)
         config.run_conky(conky_file)
 
-if __name__ == '__main__':
-    import sys
-    app = QApplication(sys.argv)
-    ex = App()
-    sys.exit(app.exec_())
