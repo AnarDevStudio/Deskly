@@ -27,7 +27,7 @@ def create_conky_file(id):
         styles = json.load(styles_file)
 
     with open(conky_path, "w") as f:
-        f.write(styles[0]["style"])
+        f.write(styles[id]["style"])
         print(f"'.conkyrc' file fuck stiles is writing:\n{styles[id]['style']}")
 
     return conky_path
