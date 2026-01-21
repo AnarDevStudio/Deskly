@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# A simple script to display wifi icon connected or not
+# Use Feather icon font
+# Closebox73
+
+SSID_NAME=$(/sbin/iwgetid -r)
+
+if [[ "${SSID_NAME}" != "" ]]; then
+    echo ""
+else
+echo ""
+fi
+
+exit

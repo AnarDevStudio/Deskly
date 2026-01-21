@@ -88,75 +88,79 @@ class App(QWidget):
         main_layout.setSpacing(20)
         main_layout.setContentsMargins(20, 20, 20, 20)
 
-        element_count = 0
-        for row in range(5):
-            for col in range(3):
-                logo = QPixmap("./styles/images.jpeg")
-                
-                button_div = QWidget()
-                button_div.setFixedSize(270, 230)
-                button_div.setStyleSheet("""
-                    background-color: rgba(46, 46, 66, 0.6);
-                    border-radius: 15px;
-                    border: 2px solid rgba(50, 130, 184, 0.3);
-                """)
-                
-                style_name = QLabel("Normal Style", button_div)
-                style_name.setGeometry(0, 10, 270, 35)
-                style_name.setAlignment(Qt.AlignCenter)
-                style_name.setStyleSheet("""
+        styles = config.get_styles()
+        
+        for i, style in enumerate(styles):
+            row = i // 3
+            col = i % 3
+            
+            logo = QPixmap("./styles/images.jpeg")
+            
+            button_div = QWidget()
+            button_div.setFixedSize(270, 230)
+            button_div.setStyleSheet("""
+                background-color: rgba(46, 46, 66, 0.6);
+                border-radius: 15px;
+                border: 2px solid rgba(50, 130, 184, 0.3);
+            """)
+            
+            # Safe name handling
+            name = style.get("name", f"Style {i+1}")
+            style_name = QLabel(name, button_div)
+            style_name.setGeometry(0, 10, 270, 35)
+            style_name.setAlignment(Qt.AlignCenter)
+            style_name.setStyleSheet("""
+                color: #bbe1fa;
+                font-size: 16px;
+                font-weight: bold;
+                font-family: 'Segoe UI', Arial;
+                background-color: transparent;
+                border: none;
+            """)
+            
+            image_container = QWidget(button_div)
+            image_container.setGeometry(10, 45, 250, 120)
+            image_container.setStyleSheet("""
+                background-color: rgba(30, 30, 46, 0.8);
+                border-radius: 10px;
+                border: 1px solid rgba(50, 130, 184, 0.2);
+            """)
+            
+            image_label = QLabel(image_container)
+            image_label.setGeometry(5, 5, 240, 110)
+            image_label.setAlignment(Qt.AlignCenter)
+            image_label.setPixmap(logo.scaled(240, 110, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+            image_label.setStyleSheet("background-color: transparent; border: none;")
+            
+            # Button
+            button = QPushButton("Apply Style", button_div)
+            button.setGeometry(30, 180, 210, 40)
+            button.setStyleSheet("""
+                QPushButton {
+                    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                        stop:0 #0f4c75, stop:1 #3282b8);
                     color: #bbe1fa;
-                    font-size: 16px;
+                    border: none;
+                    border-radius: 8px;
+                    padding: 10px;
+                    font-size: 14px;
                     font-weight: bold;
                     font-family: 'Segoe UI', Arial;
-                    background-color: transparent;
-                    border: none;
-                """)
-                
-                image_container = QWidget(button_div)
-                image_container.setGeometry(10, 45, 250, 120)
-                image_container.setStyleSheet("""
-                    background-color: rgba(30, 30, 46, 0.8);
-                    border-radius: 10px;
-                    border: 1px solid rgba(50, 130, 184, 0.2);
-                """)
-                
-                image_label = QLabel(image_container)
-                image_label.setGeometry(5, 5, 240, 110)
-                image_label.setAlignment(Qt.AlignCenter)
-                image_label.setPixmap(logo.scaled(240, 110, Qt.KeepAspectRatio, Qt.SmoothTransformation))
-                image_label.setStyleSheet("background-color: transparent; border: none;")
-                
-                # Button
-                button = QPushButton(f"Apply Style {element_count + 1}", button_div)
-                button.setGeometry(30, 180, 210, 40)
-                button.setStyleSheet("""
-                    QPushButton {
-                        background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-                            stop:0 #0f4c75, stop:1 #3282b8);
-                        color: #bbe1fa;
-                        border: none;
-                        border-radius: 8px;
-                        padding: 10px;
-                        font-size: 14px;
-                        font-weight: bold;
-                        font-family: 'Segoe UI', Arial;
-                    }
-                    QPushButton:hover {
-                        background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-                            stop:0 #3282b8, stop:1 #5dade2);
-                        border: 2px solid #bbe1fa;
-                    }
-                    QPushButton:pressed {
-                        background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-                            stop:0 #1b262c, stop:1 #0f4c75);
-                    }
-                """)
-                button.setCursor(Qt.PointingHandCursor)
-                button.clicked.connect(lambda checked, num=element_count: self.on_click(num))
-                
-                main_layout.addWidget(button_div, row, col)
-                element_count += 1
+                }
+                QPushButton:hover {
+                    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                        stop:0 #3282b8, stop:1 #5dade2);
+                    border: 2px solid #bbe1fa;
+                }
+                QPushButton:pressed {
+                    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                        stop:0 #1b262c, stop:1 #0f4c75);
+                }
+            """)
+            button.setCursor(Qt.PointingHandCursor)
+            button.clicked.connect(lambda checked, num=i: self.on_click(num))
+            
+            main_layout.addWidget(button_div, row, col)
 
         scroll.setWidget(scroll_widget)
         container_layout.addWidget(scroll)

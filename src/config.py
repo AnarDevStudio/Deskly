@@ -21,16 +21,36 @@ def create_conky_file(id):
     json_path = os.path.join(os.path.dirname(__file__), "styles", "styles.json")
 
     if not os.path.exists(json_path):
-        return None
+        return []
 
     with open(json_path, "r") as styles_file:
         styles = json.load(styles_file)
+    
+    return styles
+
+def create_conky_file(id):
+    deskly_dir = create_deskly_folder()
+    conky_path = os.path.join(deskly_dir, ".conkyrc")
+
+    styles = get_styles()
+    
+    if id >= len(styles):
+        print(f"Error: Style ID {id} out of range.")
+        return None
 
     with open(conky_path, "w") as f:
         f.write(styles[id]["style"])
-        print(f"'.conkyrc' file fuck stiles is writing:\n{styles[id]['style']}")
+        print(f"'.conkyrc' file is writing:\n{styles[id]['style']}")
 
     return conky_path
+
+def get_styles():
+    json_path = os.path.join(os.path.dirname(__file__), "styles", "styles.json")
+    if not os.path.exists(json_path):
+        return []
+        
+    with open(json_path, "r") as styles_file:
+        return json.load(styles_file)
 
 def install_dependencies():
     subprocess.run(["sudo", "apt", "update"], check=True)
