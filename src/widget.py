@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QGr
 from PyQt5.QtGui import QPixmap, QFont, QColor, QPalette
 from PyQt5.QtCore import Qt, QPropertyAnimation, QEasingCurve, QPoint
 import config
+import os
 
 
 class App(QWidget):
@@ -94,7 +95,13 @@ class App(QWidget):
             row = i // 3
             col = i % 3
             
-            logo = QPixmap("./styles/images.jpeg")
+            image_path = style.get("image") or style.get("images")
+            if image_path:
+                if not os.path.isabs(image_path):
+                    image_path = os.path.join(os.path.dirname(__file__), "styles", image_path)
+                logo = QPixmap(image_path)
+            else:
+                logo = QPixmap()
             
             button_div = QWidget()
             button_div.setFixedSize(270, 230)
