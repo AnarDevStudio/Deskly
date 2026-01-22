@@ -1,0 +1,19 @@
+#!/bin/bash
+MAX_LEN=10
+DEFAULT_FALLBACK="$1"
+SSID_NAME=""
+if command -v iwgetid &>/dev/null; then
+SSID_NAME=$(iwgetid -r 2>/dev/null)
+fi
+if [[ -n "$SSID_NAME" ]]; then
+SSID_NAME="${SSID_NAME//$'\n'/}"
+SSID_NAME="${SSID_NAME//$'\r'/}"
+if (( ${#SSID_NAME} > MAX_LEN )); then
+echo "${SSID_NAME:0:MAX_LEN}..."
+else
+echo "$SSID_NAME"
+fi
+else
+echo "$DEFAULT_FALLBACK"
+fi
+exit 0

@@ -1,0 +1,18 @@
+#!/bin/bash
+CACHE_FILE="$HOME/.cache/weather.json"
+DEFAULT_ICON=""
+declare -rA ICONS=(
+["01d"]="" ["01n"]=""
+["02d"]="" ["02n"]=""
+["03d"]="" ["03n"]=""
+["04d"]="" ["04n"]=""
+["09d"]="" ["09n"]=""
+["10d"]="" ["10n"]=""
+["11d"]="" ["11n"]=""
+["13d"]="" ["13n"]=""
+["50d"]="" ["50n"]=""
+)
+[[ -f "$CACHE_FILE" ]] || { echo "$DEFAULT_ICON"; exit 0; }
+WEATHER_ICON=$(jq -r '.weather[0].icon // empty' "$CACHE_FILE")
+echo "${ICONS[$WEATHER_ICON]:-$DEFAULT_ICON}"
+exit 0

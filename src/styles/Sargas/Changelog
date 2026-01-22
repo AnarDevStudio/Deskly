@@ -1,0 +1,57 @@
+Changelog
+------------------------------
+Sargas - Conky Theme
+[ Scorpio Themes Pack ] 
+
+by Closebox73
+
+Social
+X			: https://twitter.com/closebox73
+Discord		: https://discord.com/users/1115644269802311750
+Pling		: https://pling.com/u/closebox73x
+Mastodon	: https://mastodon.social/@closebox73
+------------------------------
+
+v2.9
+Release date : 09 Jul 2025
+- New weather.sh v4.0
+- Adjustments to execi command usage
+- New rings Lua script with rounded option
+- New playerctl status script
+- Dropped native MPD support — MPD can still be used, but requires mpdris2 to work with playerctl
+- Minor tweaks and improvements
+
+
+v2.2
+date : 02 Oct 2023
+-	Add Playerctl.sh script
+-	Add Change color script
+-	Slight size changes to ring stats
+-	Some minor change
+
+
+v1.9
+date : 02 Oct 2023
+-	Add Playerctl version
+-	New weather.sh
+-	Some minor change
+
+
+v1.5
+date : 21 Jan 2023
+-	Rearrange config line
+-	Minimize archive size
+-	Little extra line in scripts
+-	Add Changelog file
+-	Change accent color
+
+
+v1.2
+date : 15 Sep 2022
+-	Add override_utf8_locale line
+-	Little extra line in scripts
+
+
+v1.0
+date : 05 Jun 2020
+-	Initial release

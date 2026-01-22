@@ -1,0 +1,44 @@
+Changelog
+--------------------------------------------------------
+Electra - Conky Theme
+[ Taurus Themes Pack ] 
+
+by Closebox73
+
+Social
+X			: https://twitter.com/closebox73
+Discord		: https://discord.com/users/1115644269802311750
+Pling		: https://pling.com/u/closebox73x
+Mastodon	: https://mastodon.social/@closebox73
+--------------------------------------------------------
+
+v3.0
+date : 8 Jun 2025
+-	New weather.sh v3.0
+-	Change name to be ELECTRA ( Internal purpose only )
+-	Some minor change
+
+
+v2.5
+date : 1 Nov 2024
+-	Add line draw_blended in conky config due transparent image issue in Gnome & KDE
+-	New weather.sh
+-	New weather-icon-text.sh
+-	Change to playerctl for media player info
+-	Change font from Abel to be Oswald
+-	Add text.lua
+-	Add Wi-fi & Battery info
+-	Some minor change
+
+
+v1.8
+date : 08 Mar 2023
+-	Add License
+-	Add Changelog file
+-	A few changes to the script
+-	Add 5 color variant
+
+
+v1.0
+date : 22 Nov 2022
+-	Initial release

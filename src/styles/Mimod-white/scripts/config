@@ -1,0 +1,36 @@
+#!/bin/bash
+
+########################################################
+#                                                      #
+#   if u change something here conky needs a restart   #
+#                                                      #
+########################################################
+
+CITY_ID=""
+API_KEY=""  # Your API key must be set!
+UNIT=""
+LANG=""
+
+
+# Manual network interface. Leave blank ("") for automatic detection.
+NET_INTERFACE=""
+
+
+# Options: "ZENQUOTES" | "BRAINYQUOTE" | "RANDOMQUOTE" | "QUOTABLE" | "ROUNDROBIN"
+# "ROUNDROBIN" alternately selects one of the three sources.
+QUOTE_SOURCE="ROUNDROBIN"
+
+
+# Manual mount names/paths. Leave blank ("") for automatic detection.
+MOUNT_NAME_1=""
+MOUNT_NAME_2=""
+MOUNT_NAME_3=""
+MOUNT_NAME_4=""
+MOUNT_PATH_1="" 
+MOUNT_PATH_2="" 
+MOUNT_PATH_3=""
+MOUNT_PATH_4=""
+
+
+# Manual  CPU temp. Unit °C or °F. Leave blank ("") for automatic detection.
+TEMP_UNIT_OVERRIDE=""
